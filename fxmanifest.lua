@@ -4,7 +4,10 @@ game 'gta5'
 author 'jay ;)'
 description 'tnj development https://discord.gg/GUhYGu999z'
 
-shared_script 'config.lua'
+shared_scripts {
+	'@es_extended/imports.lua',
+	'config.lua'
+}
 client_script 'client/*.lua'
 server_script 'server/*.lua'
 files {
