@@ -1,2 +1,2 @@
 Config = {}
-Config.QBTarget = true
+Config.QBTarget = false
