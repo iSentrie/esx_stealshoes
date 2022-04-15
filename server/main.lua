@@ -1,20 +1,18 @@
-local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent('tnj-stealshoes:server:TheftShoe', function(playerId)
     local source = source
-    local Player = QBCore.Functions.GetPlayer(source)
-    local Receiver = QBCore.Functions.GetPlayer(playerId)
+    local Player = ESX.GetPlayerFromId(source)
+    local Receiver = ESX.GetPlayerFromId(playerId)
     if Receiver then 
-        TriggerClientEvent("tnj-stealshoes:client:StoleShoe", Receiver.PlayerData.source, Player.PlayerData.source)
+        TriggerClientEvent("tnj-stealshoes:client:StoleShoe", Receiver.source, Player.source)
     end
 end)
 
-RegisterNetEvent("tnj-stealshoes:server:Complete", function(playerId)
+RegisterNetEvent('tnj-stealshoes:server:Complete', function(playerId)
     local source = source
-    local Player = QBCore.Functions.GetPlayer(source)
-    local Receiver = QBCore.Functions.GetPlayer(playerId)
+    local Player = ESX.GetPlayerFromId(source)
+    local Receiver = ESX.GetPlayerFromId(playerId)
     if Receiver then
-        Receiver.Functions.AddItem("weapon_shoe", 1)
-        TriggerClientEvent('inventory:client:ItemBox', Receiver.PlayerData.source, QBCore.Shared.Items["weapon_shoe"], 'add')
+        Receiver.addWeapon('weapon_shoe', 1)
     end
 end)
