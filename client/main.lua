@@ -5,7 +5,7 @@ end)
 RegisterNetEvent('tnj-stealshoes:client:TheftShoe', function() -- This could be used in the radialmenu ;)
     local ped = PlayerPedId()
     if not IsPedRagdoll(ped) then
-        local player, distance = ESX.GetClosestPlayer()
+        local player, distance = ESX.Game.GetClosestPlayer()
         if player ~= -1 and distance < 1.5 then
             local playerId = GetPlayerServerId(player)
             if not IsPedInAnyVehicle(GetPlayerPed(player)) and not IsPedInAnyVehicle(ped) then
