@@ -1,5 +1,3 @@
-local QBCore = exports['qb-core']:GetCoreObject()
-
 RegisterCommand("stealshoes", function()
     TriggerEvent('tnj-stealshoes:client:TheftShoe')
 end)
@@ -7,7 +5,7 @@ end)
 RegisterNetEvent('tnj-stealshoes:client:TheftShoe', function() -- This could be used in the radialmenu ;)
     local ped = PlayerPedId()
     if not IsPedRagdoll(ped) then
-        local player, distance = QBCore.Functions.GetClosestPlayer()
+        local player, distance = ESX.GetClosestPlayer()
         if player ~= -1 and distance < 1.5 then
             local playerId = GetPlayerServerId(player)
             if not IsPedInAnyVehicle(GetPlayerPed(player)) and not IsPedInAnyVehicle(ped) then
@@ -22,13 +20,13 @@ RegisterNetEvent('tnj-stealshoes:client:TheftShoe', function() -- This could be 
                     TriggerServerEvent("tnj-stealshoes:server:TheftShoe", playerId)
                     SetPedComponentVariation(oped, 6, 34, 0, 2)
                 else
-                    QBCore.Functions.Notify("No shoes to been stolen!", "error")
+                    ESX.ShowNotification("No shoes to been stolen!")
                 end
             else
-                QBCore.Functions.Notify('You can\'t steal shoes in vehicle', "error")
+                ESX.ShowNotification('You can\'t steal shoes in vehicle')
             end
         else
-            QBCore.Functions.Notify('No one nearby!', "error")
+            ESX.ShowNotification('No one nearby!')
         end
     end
 end)
@@ -38,10 +36,10 @@ RegisterNetEvent('tnj-stealshoes:client:StoleShoe', function(playerId)
     local hasShoes = GetPedDrawableVariation(ped, 6)
     if hasShoes ~= 34 then
         SetPedComponentVariation(ped, 6, 34, 0, 2)
-        QBCore.Functions.Notify("Shoes got robbed lmao", 'primary')
+        ESX.ShowNotification("Shoes got robbed lmao")
         TriggerServerEvent("tnj-stealshoes:server:Complete", playerId)
     else
-        QBCore.Functions.Notify("Someone tried to steal yo feet", 'primary')
+        ESX.ShowNotification("Someone tried to steal yo feet")
     end
 end)
 
